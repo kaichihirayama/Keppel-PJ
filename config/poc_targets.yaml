@@ -1,41 +1,43 @@
 # PoC target J-REITs (Phase 1: ~5 office-focused issuers).
 #
-# edinet_code is intentionally left null here: it must be looked up from
-# EDINET's official code list (https://disclosure2.edinet-fsa.go.jp/)
-# rather than guessed, per the "no fabricated values" rule (section 8/9).
-# Fill it in before running the Phase 2 document-fetch pipeline.
+# edinet_code values below were cross-checked against fudosandb.jp's
+# per-REIT pages (URL /reit/<edinet_code> matched against the REIT name
+# shown on that page) on 2026-08-08. This is a secondary/unofficial
+# source; re-verify against EDINET's own code list
+# (https://disclosure2.edinet-fsa.go.jp/) before relying on these for
+# production document fetches in Phase 2.
 reits:
   - reit_code: "8951"
     reit_name: "日本ビルファンド投資法人"
     sponsor: "三井不動産"
     asset_type: "オフィス"
-    edinet_code: null
+    edinet_code: "E13206"
     website: "https://www.nbf-m.com/"
 
   - reit_code: "8952"
     reit_name: "ジャパンリアルエステイト投資法人"
     sponsor: "三菱地所"
     asset_type: "オフィス"
-    edinet_code: null
+    edinet_code: "E13205"
     website: "https://www.j-re.co.jp/"
 
   - reit_code: "8955"
     reit_name: "日本プライムリアルティ投資法人"
     sponsor: "東京建物"
     asset_type: "オフィス・商業"
-    edinet_code: null
+    edinet_code: "E13448"
     website: "https://www.jpr-reit.co.jp/"
 
   - reit_code: "8976"
     reit_name: "大和証券オフィス投資法人"
     sponsor: "大和証券グループ"
     asset_type: "オフィス"
-    edinet_code: null
+    edinet_code: "E14197"
     website: "https://www.daiwa-office.co.jp/"
 
   - reit_code: "8975"
     reit_name: "いちごオフィスリート投資法人"
     sponsor: "いちご株式会社"
     asset_type: "オフィス"
-    edinet_code: null
+    edinet_code: "E14150"
     website: "https://www.ichigo-office.co.jp/"
