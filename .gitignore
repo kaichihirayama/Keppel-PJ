@@ -1,0 +1,28 @@
+# Environment
+venv/
+.venv/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Data (raw source docs and generated DB are not committed in PoC)
+data/raw/documents/*
+data/raw/pdf/*
+data/processed/*
+data/jreit.db
+!data/raw/documents/.gitkeep
+!data/raw/pdf/.gitkeep
+!data/processed/.gitkeep
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+*.log
