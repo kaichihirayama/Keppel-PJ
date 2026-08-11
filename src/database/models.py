@@ -18,6 +18,7 @@ import datetime as _dt
 
 from sqlalchemy import (
     CheckConstraint,
+    Date,
     DateTime,
     Float,
     ForeignKey,
@@ -119,7 +120,16 @@ class PropertyMetric(Base):
     property_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("properties.property_id"), nullable=False
     )
+    # Human-readable period label as shown in the source document
+    # (e.g. "2024年9月期").
     period: Mapped[str] = mapped_column(String(32), nullable=False)
+
+    # Structured period metadata, needed to combine semi-annual periods into
+    # a trailing-12-month figure (src/extraction/normalizer.py). period_type
+    # is 'semi_annual' for a ~6-month fiscal period or 'annual' for a
+    # ~12-month one; period_end_date is that period's fiscal period-end date.
+    period_type: Mapped[str | None] = mapped_column(String(16))
+    period_end_date: Mapped[_dt.date | None] = mapped_column(Date)
 
     occupancy_rate: Mapped[float | None] = mapped_column(Float)
     # Source document's own OCC definition, when it differs from the
@@ -148,6 +158,10 @@ class PropertyMetric(Base):
         CheckConstraint(
             "rent_per_tsubo IS NULL OR rent_per_tsubo >= 0",
             name="ck_property_metrics_rent_per_tsubo_nonneg",
+        ),
+        CheckConstraint(
+            "period_type IS NULL OR period_type IN ('semi_annual', 'annual')",
+            name="ck_property_metrics_period_type",
         ),
     )
 

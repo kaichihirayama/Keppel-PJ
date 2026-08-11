@@ -79,6 +79,19 @@ pytest
 
 Cap Rateは `acquisition_cap_rate` / `appraisal_cap_rate` / `noi_yield` を独立した列として保持し、混同しないよう設計しています。OCCは0〜100%の範囲チェックを行い、原資料の定義文言が標準定義と異なる場合は `occupancy_rate_definition` に保存します。
 
+### 半期・通期の年間換算
+
+J-REITは半期（6ヶ月）ごとに開示する銘柄と、通期（12ヶ月）でまとめて開示する銘柄が混在しています。物件間比較の前に、`src/extraction/normalizer.py` の `annualize_metrics()` で1年分の数値へ揃えます。
+
+- 直近が通期（`period_type="annual"`）の場合はその数値をそのまま使用
+- 直近が半期（`period_type="semi_annual"`）で、連続する2期（6ヶ月差）が揃っている場合は合算
+  - **NOI**（期間中に発生する金額）→ 2期を**合計**
+  - **occupancy_rate / rent_per_tsubo / 各Cap Rate**（時点の比率・単価）→ 2期の**平均**
+- 片方の期に値がない項目は、推測で埋めずに `None`（`missing_fields` に記録）とする
+- 連続する2期が揃わない場合は年間換算せず `None` を返す（推測しない）
+
+この判定に使う `period_type` / `period_end_date` は `property_metrics` テーブルに保持しています。
+
 ## ディレクトリ構成
 
 ```
