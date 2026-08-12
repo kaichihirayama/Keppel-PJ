@@ -7,7 +7,7 @@ from src.config import load_poc_targets
 def test_load_poc_targets_returns_expected_shape():
     targets = load_poc_targets()
 
-    assert 1 <= len(targets) <= 10
+    assert 1 <= len(targets) <= 30
     for target in targets:
         assert "reit_code" in target
         assert "reit_name" in target

@@ -1,11 +1,15 @@
-# PoC target J-REITs (Phase 1: ~5 office-focused issuers).
+# Target J-REITs for the underwriting benchmark database.
 #
-# edinet_code values below were cross-checked against fudosandb.jp's
-# per-REIT pages (URL /reit/<edinet_code> matched against the REIT name
-# shown on that page) on 2026-08-08. This is a secondary/unofficial
-# source; re-verify against EDINET's own code list
+# edinet_code values were cross-checked against fudosandb.jp's per-REIT
+# pages (URL vs. displayed REIT name) on 2026-08-08/2026-08-12. This is a
+# secondary/unofficial source; re-verify against EDINET's own code list
 # (https://disclosure2.edinet-fsa.go.jp/) before relying on these for
-# production document fetches in Phase 2.
+# production document fetches.
+#
+# sponsor / asset_type are left null for REITs where they were not
+# independently confirmed here — these fields belong to the source
+# documents (有価証券報告書) and should be extracted with provenance
+# rather than guessed in this config (per the "no fabricated values" rule).
 reits:
   - reit_code: "8951"
     reit_name: "日本ビルファンド投資法人"
@@ -21,12 +25,19 @@ reits:
     edinet_code: "E13205"
     website: "https://www.j-re.co.jp/"
 
-  - reit_code: "8955"
-    reit_name: "日本プライムリアルティ投資法人"
-    sponsor: "東京建物"
-    asset_type: "オフィス・商業"
-    edinet_code: "E13448"
-    website: "https://www.jpr-reit.co.jp/"
+  - reit_code: "8958"
+    reit_name: "グローバル・ワン不動産投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E13678"
+    website: null
+
+  - reit_code: "8975"
+    reit_name: "いちごオフィスリート投資法人"
+    sponsor: "いちご株式会社"
+    asset_type: "オフィス"
+    edinet_code: "E14150"
+    website: "https://www.ichigo-office.co.jp/"
 
   - reit_code: "8976"
     reit_name: "大和証券オフィス投資法人"
@@ -35,9 +46,51 @@ reits:
     edinet_code: "E14197"
     website: "https://www.daiwa-office.co.jp/"
 
-  - reit_code: "8975"
-    reit_name: "いちごオフィスリート投資法人"
-    sponsor: "いちご株式会社"
-    asset_type: "オフィス"
-    edinet_code: "E14150"
-    website: "https://www.ichigo-office.co.jp/"
+  - reit_code: "3290"
+    reit_name: "Ｏｎｅリート投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E27884"
+    website: null
+
+  - reit_code: "8972"
+    reit_name: "ＫＤＸ不動産投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E14109"
+    website: null
+
+  - reit_code: "8955"
+    reit_name: "日本プライムリアルティ投資法人"
+    sponsor: "東京建物"
+    asset_type: "オフィス・商業"
+    edinet_code: "E13448"
+    website: "https://www.jpr-reit.co.jp/"
+
+  - reit_code: "8966"
+    reit_name: "平和不動産リート投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E14005"
+    website: null
+
+  - reit_code: "8977"
+    reit_name: "阪急阪神リート投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E14207"
+    website: null
+
+  - reit_code: "3462"
+    reit_name: "野村不動産マスターファンド投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E31931"
+    website: null
+
+  - reit_code: "3451"
+    reit_name: "トーセイ・リート投資法人"
+    sponsor: null
+    asset_type: null
+    edinet_code: "E30997"
+    website: null
